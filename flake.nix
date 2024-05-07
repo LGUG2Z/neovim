@@ -1,5 +1,5 @@
 {
-  description = "A nixvim configuration";
+  description = "JeezyVim";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,8 +15,6 @@
     flake-parts,
     ...
   } @ inputs: let
-    config = import ./config;
-    # NOTE: Function to create a customized pkgs with `allowUnfree` set to true
     mkPkgs = system:
       import nixpkgs {
         inherit system;
@@ -26,21 +24,33 @@
       };
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
-      imports = [
-        inputs.devenv.flakeModule
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
       ];
 
-      perSystem = {system, ...}: let
+      imports = [
+        inputs.devenv.flakeModule
+        inputs.flake-parts.flakeModules.easyOverlay
+      ];
+
+      perSystem = {
+        system,
+        config,
+        ...
+      }: let
         pkgs =
-          mkPkgs system; # NOTE: Use the custom pkgs with allowUnfree enabled
+          mkPkgs system;
         nixvimLib = nixvim.lib.${system};
         nixvim' = nixvim.legacyPackages.${system};
-        nvim = nixvim'.makeNixvimWithModule {
+        jeezyvim = nixvim'.makeNixvimWithModule {
           inherit pkgs;
-          module = config;
+          module = import ./config;
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
+            inherit self;
             # inherit (inputs) foo;
           };
         };
@@ -48,29 +58,29 @@
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNvim {
-            inherit nvim;
-            name = "My personal neovim configuration";
+            nvim = jeezyvim;
+            name = "JeezyVim";
           };
         };
 
-        packages = {
-          # Lets you run `nix run .` to start nixvim
-          default = nvim;
+        packages.default = jeezyvim;
+        packages.jeezyvim = jeezyvim;
+
+        overlayAttrs = {
+          inherit (config.packages) jeezyvim;
         };
 
         devenv.shells.default = {
-          name = "neovim";
+          name = "JeezyVim";
 
           packages = with pkgs; [
             just
           ];
 
           pre-commit.hooks = {
-            ruff.enable = true;
-            shellcheck.enable = true;
             markdownlint.enable = true;
             alejandra.enable = true;
-            editorconfig-checker.enable = true;
+            prettier.enable = true;
           };
         };
       };

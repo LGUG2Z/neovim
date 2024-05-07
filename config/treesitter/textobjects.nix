@@ -18,13 +18,13 @@
     swap = {
       enable = true;
       swapNext = {
-        "<leader>pl" = {
+        "<leader>pn" = {
           query = "@parameter.inner";
           desc = "Parameter swap next";
         };
       };
       swapPrevious = {
-        "<leader>ph" = {
+        "<leader>pp" = {
           query = "@parameter.inner";
           desc = "Parameter swap prev";
         };

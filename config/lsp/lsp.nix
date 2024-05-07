@@ -2,63 +2,30 @@
   plugins.lsp = {
     enable = true;
     servers = {
-      astro = {enable = true;};
-      bashls = {enable = true;};
-      dockerls = {enable = true;};
-      eslint = {enable = true;};
-      gopls = {enable = true;};
-      hls = {enable = true;};
-      jsonls = {enable = true;};
-      julials = {enable = true;};
-      ltex = {
-        enable = true;
-        settings.checkFrequency = "save";
-      };
-      texlab = {enable = true;};
-      marksman = {enable = true;};
-      nil_ls = {enable = true;};
-      # Python
-      pyright = {enable = true;};
-      ruff-lsp = {
-        enable = false;
-        extraOptions = {
-          init_options = {
-            settings = {
-              fixAll = false;
-              organizeImports = false;
-            };
-          };
-        };
-      };
-      tsserver = {enable = true;};
-      lua-ls = {enable = true;};
+      bashls.enable = true;
+      dockerls.enable = true;
+      gopls.enable = true;
+      jsonls.enable = true;
+      marksman.enable = true;
+      nil_ls.enable = true;
+      pyright.enable = true;
+      tsserver.enable = true;
+      lua-ls.enable = true;
       rust-analyzer = {
         enable = true;
-        installCargo = true;
-        installRustc = true;
+        installCargo = false;
+        installRustc = false;
       };
-      svelte = {enable = true;};
-      tailwindcss = {enable = true;};
-      typst-lsp = {enable = true;};
-      # vscode extracted
-      cssls = {enable = true;};
-      html = {enable = true;};
-    };
-    keymaps = {
-      diagnostic = {
-        "]d" = "goto_next";
-        "[d" = "goto_prev";
-      };
-      lspBuf = {
-        K = "hover";
-        gD = "references";
-        gd = "definition";
-        gi = "implementation";
-        gt = "type_definition";
-      };
+      tailwindcss.enable = true;
+      typst-lsp.enable = true;
+      cssls.enable = true;
+      html.enable = true;
+      htmx.enable = true;
+      solargraph.enable = true;
+      yamlls.enable = true;
+      taplo.enable = true;
     };
   };
 
-  # Custom diagnostic signs for LSP
-  extraConfigLua = builtins.readFile ./diagnostic_signs.lua;
+  plugins.lsp-format.enable = true;
 }

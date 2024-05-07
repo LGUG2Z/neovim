@@ -4,8 +4,10 @@
       enable = true;
       settings.checkTs = true;
     };
-    tmux-navigator.enable = true;
-    trouble.enable = true;
+    crates-nvim.enable = true;
+    bacon.enable = true;
+    rust-tools.enable = true;
+    lastplace.enable = true;
     todo-comments = {
       enable = true;
       mergeKeywords = true;
@@ -20,43 +22,31 @@
     };
     comment.enable = true;
     sleuth.enable = true;
-    project-nvim = {
+    nvim-tree = {
       enable = true;
-      enableTelescope = true;
     };
     toggleterm = {
       enable = true;
       settings = {
         direction = "float";
         floatOpts = {border = "single";};
-        openMapping = "<C-A-t>";
         terminalMappings = true;
       };
     };
     illuminate = {
       enable = true;
-      underCursor = false;
+      underCursor = true;
     };
     navic = {
       enable = true;
       highlight = true;
       lsp.autoAttach = true;
     };
-    yanky = {
-      enable = true;
-      picker.telescope = {
-        enable = true;
-        useDefaultMappings = true;
-      };
-      systemClipboard.syncWithRing = true;
-    };
-    refactoring.enable = true;
     better-escape = {
       enable = true;
       keys = "<Esc>";
       mapping = ["jk"];
     };
-    nvim-bqf.enable = true;
     nvim-colorizer.enable = true;
     marks.enable = true;
     markdown-preview = {

@@ -13,7 +13,43 @@
         silent = true;
       };
     }
-    # jk -> <Esc> keymap in better-escape plugin config
+
+    {
+      action = ":bnext<cr>";
+      key = "<C-]>";
+      mode = "n";
+    }
+
+    {
+      action = "o<Esc>";
+      key = "o";
+      mode = "n";
+    }
+
+    {
+      action = "O<Esc>";
+      key = "O";
+      mode = "n";
+    }
+
+    {
+      action = ":vsplit<CR>";
+      key = "|";
+      mode = "n";
+    }
+
+    {
+      action = ":split<CR>";
+      key = "-";
+      mode = "n";
+    }
+
+    # Terminal escape back to nvim
+    {
+      action = "<C-\\><C-n>";
+      key = "<Esc>";
+      mode = "t";
+    }
 
     # Window navigation
     {
@@ -143,18 +179,6 @@
       };
     }
 
-    # Navigate tabs
-    {
-      action = "<cmd>tabnew<CR>";
-      key = "<C-t>";
-      mode = "n";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "new tab";
-      };
-    }
-
     # Move text up and down
     {
       action = "<cmd>move .+1<CR>==";
@@ -186,51 +210,6 @@
         noremap = true;
         silent = true;
         desc = "Clear search highlight";
-      };
-    }
-
-    # Save files
-    {
-      action = "<cmd>w<CR>";
-      key = "<C-s>";
-      mode = "n";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "Save file";
-      };
-    }
-    # Close buffers
-    {
-      action = "<cmd>lua require('mini.bufremove').delete()<CR>";
-      key = "<Leader>qb";
-      mode = "n";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "Delete buffer";
-      };
-    }
-    # Close window
-    {
-      action = "<cmd>q<CR>";
-      key = "<Leader>qw";
-      mode = "n";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "Close window";
-      };
-    }
-    # Close tab
-    {
-      action = "<cmd>tabclose<CR>";
-      key = "<Leader>qt";
-      mode = "n";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "Close tab";
       };
     }
 
@@ -285,28 +264,6 @@
         noremap = true;
         silent = true;
         desc = "Paste without yanking";
-      };
-    }
-
-    # Macros
-    {
-      action = "@qj";
-      key = "Q";
-      mode = "n";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "Run q macro";
-      };
-    }
-    {
-      action = ":norm @q<CR>";
-      key = "Q";
-      mode = "x";
-      options = {
-        noremap = true;
-        silent = true;
-        desc = "Run q macro";
       };
     }
   ];

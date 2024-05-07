@@ -1,5 +1,5 @@
 {
-  plugins.diffview = {
+  colorschemes.kanagawa = {
     enable = true;
   };
 }

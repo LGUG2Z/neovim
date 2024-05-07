@@ -1,21 +1,18 @@
 {
   # Import all your configuration modules here
   imports = [
-    ./options.nix
-    ./autocmds.nix
-    ./plugins
-    ./keymaps
-    ./treesitter
-    ./bars
-    ./ui
-    ./misc
-    ./git
-    ./lsp
-    ./debuggers
     ./completions
-    ./ai
-    ./dashboard
-    ./themes
-    ./literate
+    ./keymaps
+    ./lsp
+    ./plugins
+    ./treesitter
+    ./ui
+    ./alpha.nix
+    ./autocmds.nix
+    ./bufferline.nix
+    ./extra.nix
+    ./kanagawa.nix
+    ./lualine.nix
+    ./options.nix
   ];
 }
